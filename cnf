@@ -1,0 +1,33 @@
+[default]
+java_home	= /opt/java/current
+classpath	= $ECLIPSEWORK/flyer-engine/target/classes:/workspace/no-engine/target/classes:$ECLIPSEWORK/flyer-apps/target/classes:/workspace/flyer-engine/target/lib/core/\*:../permanent-license/license.jar
+ff_home		= $ECLIPSEWORK/hangar/standard
+class		= flyer.server.FIXServer
+user		= guest
+pass		= guest
+host		= localhost
+fgdefault	= true
+java_opts	= -Xms64m -Xmx128m
+
+[buy]
+conf		= $ECLIPSEWORK/hangar/standard/buyside/conf.xml
+port		= 9000
+base_dir	= buyside
+
+[sell]
+conf		= $ECLIPSEWORK/hangar/standard/sellside/conf.xml
+port		= 9001
+base_dir	= sellside
+
+[appbuy]
+class		= flyer.example.basic.FlyerApp
+conf		= $ECLIPSEWORK/hangar/standard/buyside/app.txt
+port		= 9100
+
+[appsell]
+class		= flyer.example.basic.FlyerApp
+conf		= $ECLIPSEWORK/hangar/standard/sellside/app.txt
+port		= 9101
+
+[netcat]
+port 		= 9555
