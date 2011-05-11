@@ -1,7 +1,7 @@
 [default]
 java_home	= /opt/java/current
-classpath	= $ECLIPSEWORK/flyer-engine/target/classes:/workspace/no-engine/target/classes:$ECLIPSEWORK/flyer-apps/target/classes:/workspace/flyer-engine/target/lib/core/\*:../permanent-license/license.jar
-ff_home		= $ECLIPSEWORK/hangar/standard
+classpath	= /workspace/flyer-engine/target/classes:/workspace/flyer-engine/target/lib/core/*:/workspace/hangar/permanent-license/license.jar
+ff_home		= /workspace/hangar/standard
 class		= flyer.server.FIXServer
 user		= guest
 pass		= guest
@@ -10,9 +10,11 @@ fgdefault	= true
 java_opts	= -Xms64m -Xmx128m
 
 [buy]
-conf		= $ECLIPSEWORK/hangar/standard/buyside/conf.xml
+conf		= -c /workspace/hangar/standard/buyside/conf.xml
 port		= 9000
 base_dir	= buyside
+system_opts	= -Dfixflyer.home=/workspace/hangar/standard
+java_opts	= -Xshare:on
 
 [sell]
 conf		= $ECLIPSEWORK/hangar/standard/sellside/conf.xml

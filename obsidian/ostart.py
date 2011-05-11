@@ -3,6 +3,7 @@
 import sys
 import argparse
 import ConfigParser
+import os
 
 parser = argparse.ArgumentParser(description='Starts the process named by \'appid\'')
 parser.add_argument('appid', metavar='appid', type=str)
@@ -26,11 +27,27 @@ defaults = dict(config.items('default'))
 config = ConfigParser.ConfigParser(defaults)
 config.read('cnf')
 
-java_cmd = config.get(appid, 'java_home')
+java_cmd = config.get(appid, 'java_home') + "/bin/java"
 classpath = config.get(appid, 'classpath')
 class_ = config.get(appid, 'class')
-java_opts = config.get(appid, 'java_opts')
+
+jvm_opts = config.get(appid, 'java_opts')
+jvm_opts = jvm_opts.split(' ')
+
+system_opts = config.get(appid, 'system_opts')
+system_opts = system_opts.split(' ')
+
 # TODO
 app_args = config.get(appid, 'conf')
+app_args = app_args.split(' ')
 
-print " ".join([java_cmd, "-classpath", classpath, java_opts, class_, app_args])
+args = jvm_opts
+args.append("-classpath")
+args.append(classpath)
+args.extend(system_opts)
+args.append(class_)
+args.extend(app_args)
+
+print " ".join(args)
+
+os.execv(java_cmd, args)
