@@ -33,3 +33,7 @@ port		= 9101
 
 [netcat]
 port 		= 9555
+
+[hello]
+class		= Hello
+classpath	= java
