@@ -14,7 +14,6 @@ conf		= -c /workspace/hangar/standard/buyside/conf.xml
 port		= 9000
 base_dir	= buyside
 system_opts	= -Dfixflyer.home=/workspace/hangar/standard
-java_opts	= -Xshare:on
 
 [sell]
 conf		= $ECLIPSEWORK/hangar/standard/sellside/conf.xml
