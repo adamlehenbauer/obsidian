@@ -98,6 +98,11 @@ def find_conf_file():
     return None
 
 def find_in_parent_dir(fname):
+    """
+    Look in the current directory and then each parent
+    until root.
+    Inspired from 'findrepo()' in http://selenic.com/hg/file/2c9f5897d4b7/mercurial/cmdutil.py
+    """
     p = os.path.abspath(os.path.curdir)
     
     while not os.path.exists(os.path.join(p, project_conf_name)):
