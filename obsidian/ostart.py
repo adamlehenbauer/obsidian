@@ -39,15 +39,16 @@ def ostart():
         exit(1)
 
     config = ConfigParser.ConfigParser()
-    #config.readfp(conf_file)
-    config.read(conf_file.name)
+    config.readfp(conf_file)
 
     # get the config file defaults out first, and recreate
     # the config, providing those
     defaults = dict(config.items('default'))
     config = ConfigParser.ConfigParser(defaults)
-    #config.readfp(conf_file)
-    config.read(conf_file.name)
+
+    #readfp reads the whole file, must rewind
+    conf_file.seek(0)
+    config.readfp(conf_file)
 
     java_cmd = config.get(appid, 'java_home') + "/bin/java"
     classpath = config.get(appid, 'classpath')
